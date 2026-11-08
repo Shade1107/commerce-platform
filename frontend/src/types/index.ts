@@ -21,3 +21,13 @@ export interface Order {
   delivery: number
   total: number
 }
+
+export type OrderStatus = 'pending' | 'processing' | 'delivered' | 'cancelled'
+export interface Customer { id: string; name: string; phone: string; email: string; city: string }
+export interface AdminOrder {
+  id: string
+  customerId: string
+  placedAt: string
+  status: OrderStatus
+  lines: { productId: string; quantity: number }[]
+}

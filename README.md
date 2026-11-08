@@ -1,34 +1,53 @@
 # Commerce Platform
 
-A full-stack commerce platform designed to explore and implement the core workflows of an online retail business.
+A commerce platform for small retail businesses. It has a customer storefront and an admin dashboard.
 
-**Commerce Platform** is a portfolio-driven MVP project featuring a customer-facing storefront and an administrative management system. It aims to bring essential commerce operations into one integrated application, from product discovery and order placement to inventory and order management.
-
-> **Project Status: MVP — In Development**
+> **Status: MVP in development**
 >
-> This project is currently under active development. Features, architecture, and requirements may evolve as the application progresses. It is not yet intended for production use.
+> The React frontend is a working prototype. It uses mock data.
+> The ASP.NET Core backend is not started.
+> This project is not ready for production.
 
 ## Overview
 
-The project explores how a modern commerce application can support two primary user experiences:
+Commerce Platform explores the core workflows of a small online shop.
 
-- **Customer Storefront:** Browse products, explore product details, manage a shopping cart, and place orders.
-- **Administration Dashboard:** Manage products, inventory, customers, orders, payments, and other business operations.
+- **Customer storefront:** Customers browse products, view details, fill a cart, and place an order. Guest checkout is used. No account is needed.
+- **Admin dashboard:** Staff manage products, categories, inventory, orders, and customers.
 
-The initial scope focuses on establishing a functional foundation with room for future improvements and additional business capabilities.
+## Current state
 
-## Technology Stack
+The frontend runs on mock data. No backend is connected yet.
 
-| Layer | Technology |
-|---|---|
-| Backend | C# / ASP.NET Core Web API |
-| Frontend | React / TypeScript |
-| Build Tool | Vite |
-| Database | PostgreSQL |
-| ORM | Entity Framework Core |
-| Version Control | Git / GitHub |
+**Storefront**
+- Home page with featured products and categories
+- Product list with search, category filter, and sorting
+- Product details with variants
+- Cart with quantity updates and item removal (saved in the browser)
+- Guest checkout with phone number and delivery address
+- Order confirmation page
 
-## Project Structure
+**Admin dashboard (`/admin`)**
+- Dashboard with sales and order statistics
+- Product, category, inventory, order, and customer pages
+
+Admin changes are kept in memory. They reset when the page reloads.
+
+The admin area has no login. This is intentional. Authentication and authorization will come with the ASP.NET Core API.
+
+## Technology stack
+
+| Layer | Technology | Status |
+|---|---|---|
+| Frontend | React, TypeScript, Vite | Current |
+| Styling | Tailwind CSS | Current |
+| Routing | React Router | Current |
+| Backend | C# / ASP.NET Core Web API | Planned |
+| Database | PostgreSQL | Planned |
+| ORM | Entity Framework Core | Planned |
+| Version control | Git / GitHub | Current |
+
+## Project structure
 
 ```text
 commerce-platform/
@@ -36,65 +55,72 @@ commerce-platform/
 │   └── Commerce.Api/
 ├── frontend/
 │   └── src/
+│       ├── components/   Reusable UI parts
+│       ├── context/      Cart state
+│       ├── data/         Mock data
+│       ├── layouts/      Storefront and admin layouts
+│       ├── lib/          Helpers and formatters
+│       ├── pages/        Storefront and admin pages
+│       └── types/        Shared TypeScript types
 ├── docs/
 ├── .gitignore
 └── README.md
 ```
 
-- `backend/` — ASP.NET Core API and backend application logic.
-- `frontend/` — React application and user interface.
-- `docs/` — Project requirements, architecture, and technical documentation.
+- `backend/` holds the ASP.NET Core API. Work has not started.
+- `frontend/` holds the React application.
+- `docs/` holds requirements and technical notes.
 
-## Planned Features
+## Design decisions
 
-### Customer Storefront
-- Product browsing and discovery
-- Product categories and details
-- Product variants
-- Shopping cart
-- Customer information
-- Order placement
+- **Guest checkout.** The MVP needs no customer accounts.
+- **Mock data behind a clear seam.** Pages read data from `src/data/`. To connect the API, replace these imports with API calls.
+- **Separate layouts.** The storefront and the admin dashboard have their own layouts.
+- **Few dependencies.** The frontend uses React, React Router, and Tailwind CSS only.
 
-### Administration Dashboard
-- Dashboard and business overview
-- Product and category management
-- Inventory tracking
-- Customer management
-- Order processing and status management
-- Payment tracking
-- Delivery management
-- Basic sales reporting
+## Getting started (frontend)
 
-*Features are planned and may change as development and requirements analysis progress.*
+You need Node.js 20 or later.
 
-## Development Goals
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-The primary goals of this project are to:
+Open the URL that Vite prints in the terminal. The storefront is at `/`. The admin demo is at `/admin`.
 
-- Apply object-oriented programming principles using C#.
-- Develop RESTful APIs with ASP.NET Core.
-- Implement database relationships and migrations using Entity Framework Core.
-- Build a maintainable frontend using React and TypeScript.
-- Explore real-world commerce workflows and business rules.
-- Practice software architecture, validation, testing, and version control.
-- Document technical decisions throughout the development process.
+To create a production build:
 
-## Getting Started
+```bash
+npm run build
+```
 
-Setup instructions will be added as the application and its development environment are established.
+## Roadmap
 
-## Project Roadmap
-
-- [x] Initialize repository and development structure
-- [ ] Requirements analysis and scope definition
+- [x] Repository and project structure
+- [x] Frontend prototype: storefront and admin dashboard (mock data)
 - [ ] Database design and entity modeling
-- [ ] Backend architecture and database integration
-- [ ] Core API development
-- [ ] Customer storefront development
-- [ ] Administration dashboard development
-- [ ] Testing and refinement
+- [ ] Core API with ASP.NET Core and Entity Framework Core
+- [ ] Connect the frontend to the API
+- [ ] Authentication and authorization
+- [ ] Testing
 - [ ] Deployment and documentation
+
+## Development goals
+
+- Apply object-oriented principles in C#.
+- Build RESTful APIs with ASP.NET Core.
+- Model relationships and run migrations with Entity Framework Core.
+- Keep a maintainable React and TypeScript frontend.
+- Document technical decisions as the project grows.
+
+## Project Purpose
+
+This project is developed as a public GitHub portfolio project to showcase my development work while sharpening my C# and ASP.NET Core skills through practical full-stack development.
+
+It also serves as an opportunity to explore React, TypeScript, database design, RESTful API development, and real-world retail workflows.
 
 ## Contributions
 
-This is currently an independently developed portfolio project. The codebase and documentation may change as the MVP evolves.
+This is an independent portfolio project. The code and documentation may change as the MVP grows.

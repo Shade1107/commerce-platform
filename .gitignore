@@ -21,3 +21,7 @@
 # OS
 .DS_Store
 Thumbs.db
+
+.vs/
+*.log
+appsettings.Development.json
